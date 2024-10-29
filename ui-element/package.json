@@ -1,0 +1,133 @@
+{
+  "name": "ui-element",
+  "displayName": "UI-Element",
+  "description": "UI-Element extension support by Autosphere.",
+  "version": "0.0.1",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ui-element.addWebview",
+        "title": "Add Element"
+      },
+      {
+        "command": "ui-element.recentFilePage",
+        "title": "Open Recent Files UI"
+      },
+      {
+        "command": "ui-element.openLandingPage",
+        "title": "Open UI Element Landing Page"
+      },
+      {
+        "command": "extension.inspectElement",
+        "title": "Inspect DOM Element"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ui-element",
+          "title": "UI-Element",
+          "icon": "media/side_nav_logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "ui-element": [
+        {
+          "id": "ui-element-sidebar",
+          "name": "UI Elements"
+        }
+      ],
+      "explorer": [
+        {
+          "id": "uiElementView",
+          "name": "UI Elements"
+        },
+        {
+          "id": "recentFileView",
+          "name": "UI Elements"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "ui-element-sidebar",
+        "contents": "[Add Element](command:ui-element.addWebview)",
+        "when": "true"
+      }
+    ],
+    "languages": [
+      {
+        "id": "uie",
+        "aliases": [
+          "UIE File"
+        ],
+        "extensions": [
+          ".uie"
+        ]
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "uiElement.uieRender",
+        "displayName": "UIE File Render",
+        "selector": [
+          {
+            "filenamePattern": "*.uie"
+          }
+        ],
+        "priority": "default"
+      }
+    ]
+  },
+  "scripts": {
+    "install:all": "npm install && cd webview-ui && npm install",
+    "start:webview": "cd webview-ui && npm run start",
+    "build:webview": "cd webview-ui && npm run build",
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/react": "^18.3.10",
+    "@types/react-dom": "^18.3.0",
+    "@types/vscode": "^1.92.0",
+    "@types/ws": "^8.5.12",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.11.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "esbuild": "^0.24.0",
+    "esbuild-plugin-copy": "^2.1.1",
+    "eslint": "^8.57.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@types/vscode-webview": "^1.57.5",
+    "axios": "^1.7.7",
+    "express": "^4.20.0",
+    "lucide-react": "^0.453.0",
+    "ps-list": "^8.1.1",
+    "puppeteer": "^23.6.0",
+    "react-router-dom": "^6.27.0",
+    "ws": "^8.18.0",
+    "yarn": "^1.22.22"
+  }
+}
